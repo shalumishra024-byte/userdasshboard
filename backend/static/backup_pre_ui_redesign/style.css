@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&family=Noto+Sans+Tamil:wght@400;600;700&family=Noto+Sans+Telugu:wght@400;600;700&family=Noto+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+/* ==========================================================================
+   SAMVEDNA AI - Visual Design System
+   Matches Premium Design Reference:
+   - Primary: Deep Navy Blue (#0F2557)
+   - Accent: Soft Lavender/Purple (#8B7FD6 / #7C6EE6)
+   - Backgrounds: Very light gray/lavender (#F7F8FC)
+   - Status: Soft pastel pills (High: #FFEAEA, Med: #FFF4E5, Low: #E6F9F4)
+   - Cards: Crisp white with 16px radius and soft ambient shadows
+   ========================================================================== */
+
+:root {
+  --color-primary-navy: #0F2557;
+  --color-navy-dark: #0A1B3B;
+  --color-navy-light: #183B88;
+  --color-accent-lavender: #8B7FD6;
+  --color-accent-purple: #7C6EE6;
+  --color-lavender-subtle: #F0EEFC;
+  --color-lavender-surface: #FAF9FE;
+  
+  --color-bg-main: #F7F8FC;
+  --color-card-bg: #FFFFFF;
+  --color-card-border: #E8ECF5;
+  --color-card-shadow: 0 4px 20px rgba(15, 37, 87, 0.05);
+
+  --color-text-title: #0F2557;
+  --color-text-body: #334155;
+  --color-text-muted: #64748B;
+  --color-text-light: #94A3B8;
+
+  /* Status Colors */
+  --status-high-bg: #FFEAEA;
+  --status-high-text: #E03131;
+  --status-high-border: #FFD0D0;
+
+  --status-med-bg: #FFF4E5;
+  --status-med-text: #D97706;
+  --status-med-border: #FDE68A;
+
+  --status-low-bg: #E6F9F4;
+  --status-low-text: #00A389;
+  --status-low-border: #B7EFE3;
+
+  --status-info-bg: #F0EEFC;
+  --status-info-text: #5C4EB7;
+  --status-info-border: #DDD6FE;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', 'Noto Sans', 'Noto Sans Devanagari', 'Noto Sans Bengali', 'Noto Sans Tamil', 'Noto Sans Telugu', system-ui, -apple-system, sans-serif;
+  background-color: var(--color-bg-main);
+  color: var(--color-text-body);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F4F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Card Design System */
+.samvedna-card {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-card-border);
+  border-radius: 16px;
+  box-shadow: var(--color-card-shadow);
+  transition: box-shadow 0.2s ease;
+}
+
+.samvedna-card:hover {
+  box-shadow: 0 6px 24px rgba(15, 37, 87, 0.08);
+}
+
+/* Status Badges - Strict Pill Shapes */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.status-pill-high {
+  background-color: var(--status-high-bg);
+  color: var(--status-high-text);
+  border: 1px solid var(--status-high-border);
+}
+
+.status-pill-medium {
+  background-color: var(--status-med-bg);
+  color: var(--status-med-text);
+  border: 1px solid var(--status-med-border);
+}
+
+.status-pill-low {
+  background-color: var(--status-low-bg);
+  color: var(--status-low-text);
+  border: 1px solid var(--status-low-border);
+}
+
+.status-pill-neutral {
+  background-color: var(--status-info-bg);
+  color: var(--status-info-text);
+  border: 1px solid var(--status-info-border);
+}
+
+/* Buttons */
+.btn-navy {
+  background-color: var(--color-primary-navy);
+  color: #FFFFFF;
+  border-radius: 12px;
+  font-weight: 600;
+  border: none;
+  transition: all 0.2s ease;
+}
+.btn-navy:hover {
+  background-color: var(--color-navy-light);
+  transform: translateY(-1px);
+}
+
+.btn-lavender {
+  background-color: var(--color-accent-purple);
+  color: #FFFFFF;
+  border-radius: 12px;
+  font-weight: 600;
+  border: none;
+  transition: all 0.2s ease;
+}
+.btn-lavender:hover {
+  background-color: #6A5AD8;
+  transform: translateY(-1px);
+}
+
+.btn-pill-subtle {
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  color: var(--color-text-title);
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+.btn-pill-subtle:hover {
+  background-color: #F8FAFC;
+  border-color: #CBD5E1;
+}
+
+/* Chat Message Bubbles */
+.chat-bubble-bot {
+  background-color: #F4F2FF;
+  border: 1px solid #E8E4FD;
+  color: #1E293B;
+  border-radius: 18px 18px 18px 4px;
+  padding: 14px 16px;
+  line-height: 1.6;
+  box-shadow: 0 2px 8px rgba(139, 127, 214, 0.05);
+}
+
+.chat-bubble-user {
+  background-color: #EBF3FF;
+  border: 1px solid #D6E6FE;
+  color: #0F2557;
+  border-radius: 18px 18px 4px 18px;
+  padding: 14px 16px;
+  line-height: 1.6;
+  box-shadow: 0 2px 8px rgba(15, 37, 87, 0.04);
+}
+
+/* Pulse Animations */
+@keyframes emergency-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(224, 49, 49, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(224, 49, 49, 0);
+  }
+}
+
+.pulse-emergency {
+  animation: emergency-pulse 2s infinite;
+}
+
+/* Waveform Canvas Container */
+.waveform-box {
+  background-color: #FAF9FE;
+  border: 1px solid #EAE6FC;
+  border-radius: 12px;
+}
+
+/* Smooth Transitions */
+.transition-smooth {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Essential Display Fallbacks */
+.hidden {
+  display: none !important;
+}
+
+.flex {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+}
+
+button {
+  cursor: pointer;
+}
+
+input, select, textarea {
+  font-family: inherit;
+}

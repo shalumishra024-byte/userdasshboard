@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAMVEDNA AI (संवेदना AI) - Dynamic Mental Health & Atrocity Victim Support</title>
+  
+  <!-- Modern Fonts & FontAwesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Tailwind CSS & Chart.js -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  
+  <link rel="stylesheet" href="/static/css/style.css?v=6">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              950: '#061024',
+              900: '#0A1B3B',
+              850: '#0C2046',
+              800: '#0F2557',
+              700: '#152E68',
+              600: '#183B88',
+              500: '#234CA7'
+            },
+            lavender: {
+              50: '#FAF9FE',
+              100: '#F0EEFC',
+              200: '#E0DBFB',
+              300: '#C4B5FD',
+              400: '#8B7FD6',
+              500: '#7C6EE6',
+              600: '#6A5AD8',
+              700: '#5C4EB7'
+            }
+          },
+          fontFamily: {
+            sans: ['"Inter"', '"Noto Sans Devanagari"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-[#F9FAFB] text-slate-800 min-h-screen font-sans antialiased flex flex-col selection:bg-[#8B7FD6] selection:text-white">
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 text-slate-800">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2">
+      
+      <!-- Brand Logo & Title -->
+      <div class="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-shrink">
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-700 shadow-sm flex-shrink-0">
+          <i class="fa-solid fa-shield-heart text-lg sm:text-xl"></i>
+        </div>
+        <div class="min-w-0">
+          <div class="flex items-center space-x-2">
+            <h1 class="text-xs sm:text-base md:text-lg font-bold tracking-tight text-slate-800 flex items-center gap-1 truncate">
+              <span>SAMVEDNA</span>
+            </h1>
+            <span class="hidden md:inline-flex items-center px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200 text-[10px] font-medium tracking-wide">
+              Private & Confidential Support
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation & Action Controls -->
+      <div class="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
+        
+        <!-- Language Selector -->
+        <div class="relative flex items-center">
+          <select id="languageSelect" onchange="changeLanguage(this.value)" class="bg-white border border-slate-200 text-slate-700 text-xs rounded-lg px-2 sm:px-3 py-1.5 font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none cursor-pointer pr-6 appearance-none shadow-sm">
+            <option value="hi">हिन्दी (Hindi)</option>
+            <option value="en">English</option>
+            <option value="bn">বাংলা (Bengali)</option>
+            <option value="ta">தமிழ் (Tamil)</option>
+            <option value="te">తెలుగు (Telugu)</option>
+          </select>
+          <i class="fa-solid fa-language text-[11px] text-slate-400 absolute right-2 pointer-events-none"></i>
+        </div>
+
+        <!-- Emergency Action -->
+        <button onclick="triggerEmergencySOS()" class="px-3 sm:px-4 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 rounded-lg text-xs font-semibold shadow-sm flex items-center space-x-1.5 transition-all flex-shrink-0" title="Get Immediate Help">
+          <i class="fa-solid fa-phone"></i>
+          <span class="hidden sm:inline">Need immediate help?</span>
+          <span class="sm:hidden">Help</span>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-5 sm:py-6">
+
+    <!-- ================================================================= -->
+    <!-- VIEW 1: VICTIM CHECK-IN & CONVERSATIONAL SUPPORT (Default View) -->
+    <!-- ================================================================= -->
+    <div id="view-victim" class="space-y-5 sm:space-y-6">
+
+      <!-- Reassuring Hero Area -->
+      <div class="bg-white rounded-xl p-6 sm:p-8 border border-slate-200 shadow-sm relative overflow-hidden">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative z-10">
+          
+          <div class="max-w-2xl space-y-3">
+            <h2 id="supportiveGreetingTitle" class="text-2xl sm:text-3xl font-semibold text-slate-800 tracking-tight">
+              You don't have to go through this alone.
+            </h2>
+            
+            <p id="supportiveGreetingSub" class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-xl">
+              Share what you're going through in your own words. You can type, speak, or simply take a moment.
+            </p>
+            
+            <div class="pt-2 flex items-center space-x-2 text-xs text-slate-500 font-medium">
+              <i class="fa-solid fa-lock"></i>
+              <span>Private • Confidential • Non-judgmental</span>
+            </div>
+          </div>
+
+          <!-- 3 Clear Action Pathways -->
+          <div class="flex flex-col gap-3 lg:max-w-xs w-full lg:border-l border-slate-100 lg:pl-6">
+            <a href="#chatInput" class="flex items-center space-x-3 p-3 rounded-lg border border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-colors">
+              <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm flex-shrink-0">
+                <i class="fa-solid fa-message"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-800">Talk to SAMVEDNA</p>
+                <p class="text-[11px] text-slate-500">Share what's on your mind</p>
+              </div>
+            </a>
+            
+            <button onclick="document.getElementById('btnToggleRecord').click()" class="flex items-center space-x-3 p-3 rounded-lg border border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-colors text-left w-full">
+              <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm flex-shrink-0">
+                <i class="fa-solid fa-microphone"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-800">Voice Check-in</p>
+                <p class="text-[11px] text-slate-500">Speak in your preferred language</p>
+              </div>
+            </button>
+            
+            <button onclick="triggerEmergencySOS()" class="flex items-center space-x-3 p-3 rounded-lg border border-rose-200 hover:border-rose-300 hover:bg-rose-50 transition-colors text-left w-full">
+              <div class="w-8 h-8 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-sm flex-shrink-0">
+                <i class="fa-solid fa-shield"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-800">Need immediate help?</p>
+                <p class="text-[11px] text-slate-500">Find protection and support</p>
+              </div>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Main Interaction Grid: Voice Check-in & Dynamic Chat Area -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6">
+
+        <!-- Left Column: Voice Check-in, Mood Summary & Quick Presets (5 cols) -->
+        <div class="lg:col-span-4 space-y-5">
+          
+          <!-- Voice Check-in Card (Primary Starting Point) -->
+          <div class="samvedna-card p-5 sm:p-6 space-y-4">
+            
+            <div class="flex items-center justify-between border-b border-[#F1F4F9] pb-3">
+              <div class="flex items-center space-x-2.5">
+                <div class="w-10 h-10 rounded-xl bg-[#F0EEFC] border border-[#E0DBFB] text-[#7C6EE6] flex items-center justify-center text-base shadow-2xs">
+                  <i class="fa-solid fa-microphone-lines"></i>
+                </div>
+                <div>
+                  <h3 class="text-sm font-bold text-[#0F2557]" data-i18n="voice_checkin_title">Voice Check-in</h3>
+                  <p class="text-[11px] text-slate-500" data-i18n="voice_checkin_sub">Speak naturally to share your feelings</p>
+                </div>
+              </div>
+              <span id="recordingStatusBadge" data-i18n="status_ready" class="px-3 py-1 rounded-full text-[11px] bg-[#F0EEFC] text-[#5C4EB7] border border-[#DDD6FE] font-semibold tracking-wide">
+                Ready to listen
+              </span>
+            </div>
+
+            <!-- Waveform Canvas Box -->
+            <div class="waveform-box p-3.5 overflow-hidden flex flex-col items-center justify-center">
+              <canvas id="waveformCanvas" width="400" height="70" class="w-full h-16 rounded"></canvas>
+              
+              <!-- Processing Indicator Overlay -->
+              <div id="voiceAnalysisProgress" class="hidden absolute inset-0 bg-white shadow-sm border-b border-slate-200 text-slate-800">
+                <i class="fa-solid fa-circle-notch fa-spin text-[#7C6EE6] text-xl"></i>
+                <p id="voiceProgressText" class="text-xs font-semibold text-[#0F2557]">Analyzing your check-in...</p>
+              </div>
+            </div>
+
+            <!-- Record Actions -->
+            <div class="flex items-center space-x-2.5">
+              <button id="btnToggleRecord" onclick="toggleAudioRecording()" class="flex-1 py-3 px-4 bg-gradient-to-r from-[#0F2557] to-[#183B88] hover:from-[#183B88] hover:to-[#234CA7] active:scale-[0.99] text-white rounded-xl text-xs sm:text-sm font-bold shadow-md shadow-navy-900/10 flex items-center justify-center space-x-2 transition-all">
+                <i id="recordIcon" class="fa-solid fa-microphone text-sm text-[#C4B5FD]"></i>
+                <span id="recordBtnText" data-i18n="btn_start_record">Start Voice Check-in</span>
+              </button>
+              
+              <label class="py-3 px-3.5 bg-white hover:bg-slate-50 text-slate-700 hover:text-[#0F2557] rounded-xl text-xs font-semibold cursor-pointer border border-slate-200 transition-colors flex items-center space-x-1.5 shadow-2xs" title="Upload Audio Check-in (WAV / MP3 / M4A)">
+                <i class="fa-solid fa-cloud-arrow-up text-[#7C6EE6]"></i>
+                <span class="hidden sm:inline text-xs">Upload</span>
+                <input type="file" accept="audio/*" class="hidden" onchange="handleAudioUpload(event)">
+              </label>
+            </div>
+
+            <p class="text-[11px] text-slate-400 text-center italic">
+              Speak in Hindi, English, Bengali, Tamil, or Telugu. Your voice is analyzed securely.
+            </p>
+
+            <!-- Insights Summary Box -->
+            <div id="victimMoodSummaryCard" class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+              
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-slate-800 font-bold flex items-center gap-1.5">
+                  <i class="fa-solid fa-sparkles text-blue-500"></i>
+                  <span data-i18n="emotional_state_title">Your check-in</span>
+                </span>
+                <span id="victimMoodBadge" class="status-pill status-pill-neutral">Neutral</span>
+              </div>
+              
+              <p id="victimMoodSummaryText" data-i18n="mood_help_text" class="text-sm text-slate-700 leading-relaxed pt-2">
+                Take a moment to check in. Your voice and message help us understand how you are feeling.
+              </p>
+
+              <p class="text-[11px] text-slate-500 italic pt-2 border-t border-slate-200 flex items-start gap-1.5">
+                <i class="fa-solid fa-info-circle mt-0.5"></i>
+                <span data-i18n="disclaimer_text">Based on conversational signals. This is an AI-assisted estimation, not a clinical diagnosis.</span>
+              </p>
+            </div>
+
+            <!-- Gentle Situational Shortcuts -->
+            <div class="space-y-2 pt-2">
+              <div class="flex items-center justify-between">
+                <p class="text-[11px] text-slate-500 font-semibold">You can also choose a shortcut below:</p>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <button onclick="applyPreset('critical_panic')" class="preset-card-btn font-medium text-xs text-slate-700 hover:text-slate-900" data-i18n="scenario_critical">
+                  <span class="truncate block">I feel unsafe</span>
+                </button>
+                <button onclick="applyPreset('elevated_threat')" class="preset-card-btn font-medium text-xs text-slate-700 hover:text-slate-900" data-i18n="scenario_elevated">
+                  <span class="truncate block">I need someone to listen</span>
+                </button>
+                <button onclick="applyPreset('depressive_flat')" class="preset-card-btn font-medium text-xs text-slate-700 hover:text-slate-900" data-i18n="scenario_depressed">
+                  <span class="truncate block">I don't know what to do</span>
+                </button>
+                <button onclick="applyPreset('neutral')" class="preset-card-btn font-medium text-xs text-slate-700 hover:text-slate-900" data-i18n="scenario_neutral">
+                  <span class="truncate block">I need legal information</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Active Helplines Quick Card -->
+          <div class="samvedna-card p-5 space-y-3 text-xs border-blue-100 bg-blue-50/30">
+            <h4 class="font-bold text-slate-800 flex items-center justify-between text-sm">
+              <span class="flex items-center gap-2">
+                <i class="fa-solid fa-phone text-blue-600"></i>
+                <span data-i18n="hotlines_title">Your safety comes first.</span>
+              </span>
+            </h4>
+            <p class="text-xs text-slate-600">These 24/7 national support services are toll-free and confidential.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+              <a href="tel:14566" class="hotline-card p-3 rounded-lg flex items-center justify-between group">
+                <div>
+                  <p class="font-semibold text-slate-800">NHAA Helpline</p>
+                  <p class="text-[11px] text-slate-500">Atrocity Support</p>
+                </div>
+                <span class="font-bold text-blue-600 text-sm group-hover:text-blue-700">14566</span>
+              </a>
+              <a href="tel:112" class="hotline-card p-3 rounded-lg flex items-center justify-between group border-rose-100">
+                <div>
+                  <p class="font-semibold text-slate-800">Police</p>
+                  <p class="text-[11px] text-slate-500">Immediate Danger</p>
+                </div>
+                <span class="font-bold text-rose-600 text-sm group-hover:text-rose-700">112</span>
+              </a>
+              <a href="tel:14416" class="hotline-card p-3 rounded-lg flex items-center justify-between group">
+                <div>
+                  <p class="font-semibold text-slate-800">Tele-MANAS</p>
+                  <p class="text-[11px] text-slate-500">Mental Health</p>
+                </div>
+                <span class="font-bold text-teal-600 text-sm group-hover:text-teal-700">14416</span>
+              </a>
+              <a href="tel:15100" class="hotline-card p-3 rounded-lg flex items-center justify-between group">
+                <div>
+                  <p class="font-semibold text-slate-800">NALSA</p>
+                  <p class="text-[11px] text-slate-500">Free Legal Aid</p>
+                </div>
+                <span class="font-bold text-amber-600 text-sm group-hover:text-amber-700">15100</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Conversational AI Chat Feed (7 cols) -->
+        <div class="lg:col-span-8">
+          <div class="samvedna-card flex flex-col h-[620px] overflow-hidden">
+            
+            <!-- Chat Header -->
+            <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-white rounded-t-xl">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full flex-shrink-0">
+                  <img src="/static/img/ai-avatar.png" alt="SAMVEDNA" class="w-full h-full object-cover rounded-full border border-slate-200 shadow-sm" />
+                </div>
+                <div>
+                  <h3 class="text-base font-bold text-slate-800 flex items-center gap-2">
+                    <span data-i18n="chat_title">SAMVEDNA</span>
+                  </h3>
+                  <p class="text-xs text-slate-500" data-i18n="chat_sub">Your confidential support companion</p>
+                </div>
+              </div>
+              <button onclick="clearChatFeed()" class="text-xs text-slate-500 hover:text-slate-800 transition-colors flex items-center gap-1.5 px-3 py-1.5 rounded-lg hover:bg-slate-100 border border-transparent hover:border-slate-200" title="Start a new conversation">
+                <i class="fa-solid fa-rotate-right"></i>
+                <span class="hidden sm:inline" data-i18n="btn_reset">Reset</span>
+              </button>
+            </div>
+
+            <!-- Chat Message Feed -->
+            <div id="chatFeed" class="flex-1 p-4 sm:p-5 overflow-y-auto space-y-4 text-xs sm:text-sm bg-[#FAF9FE]">
+              
+              <!-- Welcome Bot Message -->
+              <div class="flex items-start space-x-3">
+                <div class="w-8 h-8 rounded-full flex-shrink-0">
+                  <img src="/static/img/ai-avatar.png" alt="SAMVEDNA" class="w-full h-full object-cover rounded-full shadow-sm" />
+                </div>
+                <div class="chat-bubble-bot max-w-[85%]">
+                  <p id="welcomeBotText" data-i18n="chat_welcome" class="text-sm">
+                    Hello. I am here to listen and support you. You can share as much or as little as you're comfortable with. How can I help you today?
+                  </p>
+                  <div class="mt-3 flex items-center space-x-2">
+                    <button onclick="speakLatestBotMessage(this)" class="px-3 py-1 bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 border border-slate-200 rounded-full text-[11px] font-medium flex items-center space-x-1.5 transition-all">
+                      <i class="fa-solid fa-volume-high"></i>
+                      <span data-i18n="btn_listen_audio">Listen</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Chat Input Area -->
+            <div class="p-3.5 bg-white border-t border-slate-200 rounded-b-xl space-y-2">
+              
+              <div class="flex items-center justify-between px-1">
+                <p class="text-[11px] text-slate-500">You are in control of what you choose to share.</p>
+                <!-- Response Length Selector -->
+                <select id="responseLength" class="text-xs border border-slate-200 bg-white text-slate-600 rounded-md px-2 py-1 focus:outline-none focus:border-blue-300">
+                  <option value="brief">Shorter Response</option>
+                  <option value="normal" selected>Normal Response</option>
+                  <option value="descriptive">Descriptive Response</option>
+                </select>
+              </div>
+
+              <form id="chatForm" onsubmit="submitCheckin(event)" class="flex items-center space-x-2">
+                
+                <!-- STT Button -->
+                <button type="button" id="btnStt" onclick="toggleStt()" class="w-11 h-11 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200 flex items-center justify-center transition-all flex-shrink-0" title="Dictate Message">
+                  <i id="sttIcon" class="fa-solid fa-microphone"></i>
+                </button>
+                
+                <input type="text" id="chatInput" placeholder="What's on your mind?" data-i18n-placeholder="chat_placeholder" class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100 transition-all">
+                
+                <button type="submit" id="btnSendChat" class="w-11 h-11 bg-blue-600 hover:bg-blue-700 text-white rounded-xl flex items-center justify-center transition-all flex-shrink-0" title="Send Message">
+                  <i class="fa-solid fa-paper-plane"></i>
+                </button>
+              </form>
+
+              <div class="flex items-center justify-between text-[10px] text-slate-400 px-1">
+                <span class="flex items-center gap-1">
+                  <i class="fa-solid fa-lock text-[9px] text-[#8B7FD6]"></i>
+                  <span>24/7 Confidential & Encrypted</span>
+                </span>
+                <span>Press Enter to send</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- VIEW 2: OFFICIAL DASHBOARD (Magistrate, Police, Counsellor)       -->
+    <!-- ================================================================= -->
+    <div id="view-official" class="hidden space-y-6">
+
+      <!-- Official Sub-Navigation -->
+      <div class="bg-white p-2 rounded-2xl border border-[#E8ECF5] flex flex-wrap items-center justify-between gap-3 shadow-sm">
+        <div class="flex items-center space-x-2">
+          <button id="subtab-district" onclick="switchOfficialSubTab('district')" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-700 text-white shadow-sm flex items-center space-x-1.5 transition-all">
+            <i class="fa-solid fa-tower-broadcast text-sky-400"></i>
+            <span>District Magistrate & Police Triage</span>
+          </button>
+          <button id="subtab-counsellor" onclick="switchOfficialSubTab('counsellor')" class="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:text-[#0F2557] hover:bg-slate-100 transition-colors flex items-center space-x-1.5">
+            <i class="fa-solid fa-user-doctor text-purple-500"></i>
+            <span>Counsellor Clinical Dossier</span>
+          </button>
+          <button id="subtab-analytics" onclick="switchOfficialSubTab('analytics')" class="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:text-[#0F2557] hover:bg-slate-100 transition-colors flex items-center space-x-1.5">
+            <i class="fa-solid fa-chart-pie text-emerald-500"></i>
+            <span>National Policy Analytics</span>
+          </button>
+        </div>
+
+        <div class="flex items-center space-x-2">
+          <button onclick="toggleAlertsDrawer()" class="px-3.5 py-2 bg-red-50 hover:bg-red-100 border border-red-200 text-red-700 rounded-xl text-xs font-bold flex items-center space-x-1.5 shadow-2xs transition-colors">
+            <i class="fa-solid fa-bell text-red-500"></i>
+            <span>Live Alerts</span>
+            <span id="activeAlertsBadge" class="ml-1 px-1.5 py-0.2 rounded-full bg-red-600 text-white text-[10px]">3</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ================= SUB-PANEL A: DISTRICT TRIAGE ================= -->
+      <div id="subpanel-district" class="space-y-5">
+        
+        <!-- Summary KPI Cards -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div class="samvedna-card p-5 space-y-1 relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-[#183B88]"></div>
+            <p class="text-[11px] text-slate-500 font-semibold">Total Monitored Cases</p>
+            <p id="metricTotalCases" class="text-2xl font-black text-[#0F2557]">6</p>
+          </div>
+          <div class="samvedna-card p-5 space-y-1 relative overflow-hidden bg-red-50/20 border-red-200/80">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-red-500"></div>
+            <p class="text-[11px] text-red-600 font-semibold flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+              <span>Critical Distress Alerts</span>
+            </p>
+            <p id="metricCriticalCases" class="text-2xl font-black text-[#E03131]">2</p>
+          </div>
+          <div class="samvedna-card p-5 space-y-1 relative overflow-hidden bg-amber-50/20 border-amber-200/80">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-amber-500"></div>
+            <p class="text-[11px] text-amber-700 font-semibold flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+              <span>High Priority Cases</span>
+            </p>
+            <p id="metricHighCases" class="text-2xl font-black text-[#D97706]">3</p>
+          </div>
+          <div class="samvedna-card p-5 space-y-1 relative overflow-hidden bg-indigo-50/20 border-indigo-200/80">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-indigo-500"></div>
+            <p class="text-[11px] text-indigo-700 font-semibold flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+              <span>Accused on Bail</span>
+            </p>
+            <p id="metricBailCases" class="text-2xl font-black text-[#4F46E5]">3</p>
+          </div>
+        </div>
+
+        <!-- Priority Triage Queue -->
+        <div class="samvedna-card p-5 sm:p-6 space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#F1F4F9] pb-3">
+            <div>
+              <h3 class="text-sm font-bold text-[#0F2557]">Victim Triage & Statutory Protection Queue</h3>
+              <p class="text-[11px] text-slate-500">Prioritized under Section 15A of SC/ST (PoA) Act</p>
+            </div>
+            <select id="caseRiskFilter" onchange="loadDistrictCases()" class="bg-[#F9FAFB] border border-slate-200 text-[#0F2557] text-xs font-medium rounded-xl px-3 py-1.5 focus:outline-none focus:border-[#8B7FD6]">
+              <option value="ALL">All Risk Levels</option>
+              <option value="CRITICAL">Critical Crisis Only</option>
+              <option value="HIGH">High Priority Only</option>
+              <option value="MODERATE">Moderate Watchlist</option>
+            </select>
+          </div>
+
+          <div id="caseQueueContainer" class="space-y-3">
+            <!-- Dynamic cases loaded via loadDistrictCases() -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= SUB-PANEL B: COUNSELLOR WORKBENCH ================= -->
+      <div id="subpanel-counsellor" class="hidden space-y-5">
+        
+        <div class="samvedna-card p-4 flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center space-x-2">
+            <span class="text-xs text-[#0F2557] font-semibold">Active Case:</span>
+            <select id="counsellorVictimSelect" onchange="loadCounsellorDossier(this.value)" class="bg-[#F9FAFB] border border-slate-200 text-[#0F2557] text-xs font-semibold rounded-xl px-3 py-1.5 focus:outline-none focus:border-[#8B7FD6]">
+              <!-- Loaded dynamically -->
+            </select>
+          </div>
+          <span class="text-xs text-[#5C4EB7] bg-[#F0EEFC] px-3 py-1 rounded-full border border-[#DDD6FE] font-semibold">Tele-MANAS Clinical Tier-2 Protocol</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+          
+          <!-- Longitudinal Graph (7 cols) -->
+          <div class="lg:col-span-8 samvedna-card p-5 space-y-3">
+            <h4 class="text-sm font-bold text-[#0F2557]">Longitudinal Distress Trajectory (DDS)</h4>
+            <div class="h-64 relative">
+              <canvas id="longitudinalChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Technical Acoustic Biomarkers (5 cols) -->
+          <div class="lg:col-span-4 samvedna-card p-5 space-y-3">
+            <h4 class="text-sm font-bold text-[#0F2557]">Acoustic Prosody Diagnostics (Official View)</h4>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div class="bg-[#F9FAFB] p-2.5 rounded-xl border border-[#E8ECF5] shadow-2xs">
+                <p class="text-[10px] text-slate-500 font-medium">Vocal Jitter %</p>
+                <p id="acousticJitter" class="font-bold text-sky-600 text-sm">--</p>
+              </div>
+              <div class="bg-[#F9FAFB] p-2.5 rounded-xl border border-[#E8ECF5] shadow-2xs">
+                <p class="text-[10px] text-slate-500 font-medium">Vocal Shimmer %</p>
+                <p id="acousticShimmer" class="font-bold text-amber-600 text-sm">--</p>
+              </div>
+              <div class="bg-[#F9FAFB] p-2.5 rounded-xl border border-[#E8ECF5] shadow-2xs">
+                <p class="text-[10px] text-slate-500 font-medium">Micro-Tremor (4-10Hz)</p>
+                <p id="acousticTremor" class="font-bold text-red-600 text-sm">--</p>
+              </div>
+              <div class="bg-[#F9FAFB] p-2.5 rounded-xl border border-[#E8ECF5] shadow-2xs">
+                <p class="text-[10px] text-slate-500 font-medium">Pitch (F0 Hz)</p>
+                <p id="acousticPitch" class="font-bold text-teal-600 text-sm">--</p>
+              </div>
+              <div class="bg-[#F9FAFB] p-2.5 rounded-xl border border-[#E8ECF5] shadow-2xs">
+                <p class="text-[10px] text-slate-500 font-medium">Harmonics / Noise (HNR)</p>
+                <p id="acousticHNR" class="font-bold text-emerald-600 text-sm">--</p>
+              </div>
+              <div class="bg-[#F9FAFB] p-2.5 rounded-xl border border-[#E8ECF5] shadow-2xs">
+                <p class="text-[10px] text-slate-500 font-medium">Silence / Pause Ratio</p>
+                <p id="acousticPause" class="font-bold text-indigo-600 text-sm">--</p>
+              </div>
+            </div>
+
+            <!-- Deep Acoustic Perception Summary (Clinical Forensic AI) -->
+            <div id="counsellorDeepVoiceCard" class="p-3.5 bg-[#FAF9FE] rounded-xl border border-[#EAE6FC] space-y-1.5 text-xs">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] text-[#0F2557] font-bold uppercase tracking-wider flex items-center gap-1.5">
+                  <i class="fa-solid fa-brain text-[#7C6EE6]"></i>
+                  <span>Deep Multimodal Audio Perception</span>
+                </span>
+                <span id="counsellorDeepEmotionBadge" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#F0EEFC] text-[#5C4EB7] border border-[#DDD6FE]">No Audio</span>
+              </div>
+              <p id="counsellorDeepVoiceSummaryText" class="text-[11px] text-slate-600 leading-relaxed italic">
+                Awaiting recorded voice check-in for deep vocal biomarker extraction.
+              </p>
+            </div>
+            
+            <form onsubmit="saveCounsellorNote(event)" class="space-y-2 pt-2 border-t border-[#F1F4F9]">
+              <p class="text-[11px] text-[#0F2557] font-semibold">Add Psychological Consultation Note:</p>
+              <textarea id="noteObservations" rows="2" placeholder="Record clinical observations and recommended care..." class="w-full bg-[#F9FAFB] border border-slate-200 rounded-xl p-2.5 text-xs text-[#0F2557] placeholder-slate-400 focus:outline-none focus:border-[#8B7FD6] focus:bg-white"></textarea>
+              <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-[#0F2557] to-[#183B88] hover:from-[#183B88] hover:to-[#234CA7] text-white rounded-xl text-xs font-semibold shadow transition-all">Save Clinical Note</button>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ================= SUB-PANEL C: NATIONAL ANALYTICS ================= -->
+      <div id="subpanel-analytics" class="hidden space-y-5">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="samvedna-card p-5 space-y-3">
+            <h4 class="text-sm font-bold text-[#0F2557]">Distress Vulnerability by Legal Stage</h4>
+            <div class="h-60 relative">
+              <canvas id="stageVulnerabilityChart"></canvas>
+            </div>
+          </div>
+          <div class="samvedna-card p-5 space-y-3">
+            <h4 class="text-sm font-bold text-[#0F2557]">Intervention Efficacy (Pre vs Post 30-Day)</h4>
+            <div class="h-60 relative">
+              <canvas id="interventionImpactChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ==================== ALERTS DRAWER ==================== -->
+  <div id="alertsDrawer" class="fixed inset-y-0 right-0 w-80 sm:w-96 bg-white border-l border-slate-200 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
+    <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-[#F9FAFB]">
+      <h3 class="text-sm font-bold text-[#0F2557] flex items-center gap-2">
+        <i class="fa-solid fa-triangle-exclamation text-red-500"></i>
+        <span>Nodal Crisis Alerts</span>
+      </h3>
+      <button onclick="toggleAlertsDrawer()" class="text-slate-400 hover:text-slate-700 p-1.5 rounded-lg hover:bg-slate-100 transition-colors"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div id="alertsDrawerFeed" class="flex-1 p-4 overflow-y-auto space-y-3">
+      <!-- Dynamic alerts -->
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/static/js/translations.js?v=2.7"></script>
+  <script src="/static/js/app.js?v=6"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+{
+  "Hi": {
+    "text": "Hi",
+    "intent": "greeting",
+    "valence": "neutral",
+    "emotion": "neutral",
+    "arousal": "low",
+    "distress_level": "none",
+    "response_mode": "casual",
+    "confidence": 0.9,
+    "reason": "Text establishes primary semantic intent as 'greeting'. Greeting input classified as casual check-in with no distress.",
+    "response": "Hello! I am the SAMVEDNA AI Assistant. How can I help you today?"
+  },
+  "I'm so happy today!": {
+    "text": "I'm so happy today!",
+    "intent": "casual_conversation",
+    "valence": "positive",
+    "emotion": "happiness/joy",
+    "arousal": "high",
+    "distress_level": "none",
+    "response_mode": "positive",
+    "confidence": 0.63,
+    "reason": "Text establishes primary semantic intent as 'casual_conversation'. Positive user expression confirmed with no distress.",
+    "response": "That's wonderful to hear! I'm really glad things are going so well. What are you most looking forward to?"
+  },
+  "I'm really excited!": {
+    "text": "I'm really excited!",
+    "intent": "casual_conversation",
+    "valence": "positive",
+    "emotion": "excitement",
+    "arousal": "high",
+    "distress_level": "none",
+    "response_mode": "positive",
+    "confidence": 0.63,
+    "reason": "Text establishes primary semantic intent as 'casual_conversation'. Positive user expression confirmed with no distress.",
+    "response": "That's wonderful to hear! I'm really glad things are going so well. What are you most looking forward to?"
+  },
+  "Tell me what FastAPI is.": {
+    "text": "Tell me what FastAPI is.",
+    "intent": "information_seeking",
+    "valence": "neutral",
+    "emotion": "neutral",
+    "arousal": "low",
+    "distress_level": "none",
+    "response_mode": "neutral",
+    "confidence": 0.9,
+    "reason": "Text establishes primary semantic intent as 'information_seeking'. Informational request classified as neutral informative response mode.",
+    "response": "FastAPI is a modern, high-performance web framework for building APIs with Python based on standard Python type hints."
+  },
+  "I'm worried about my exam.": {
+    "text": "I'm worried about my exam.",
+    "intent": "emotional_sharing",
+    "valence": "negative",
+    "emotion": "stress/anxiety",
+    "arousal": "medium",
+    "distress_level": "moderate",
+    "response_mode": "supportive",
+    "confidence": 0.71,
+    "reason": "Text establishes primary semantic intent as 'emotional_sharing'. Emotional sharing or worry triggers compassionate supportive response.",
+    "response": "It is completely natural to feel worried about exams, but remember to take things one step at a time. Take a deep, steady breath and pace yourself. You have prepared, and you can get through this."
+  },
+  "I feel overwhelmed and don't know what to do.": {
+    "text": "I feel overwhelmed and don't know what to do.",
+    "intent": "distress_support_seeking",
+    "valence": "negative",
+    "emotion": "distress",
+    "arousal": "high",
+    "distress_level": "high",
+    "response_mode": "distress_support",
+    "confidence": 0.79,
+    "reason": "Text establishes primary semantic intent as 'distress_support_seeking'. Severe distress or threat indicators require safety-oriented support.",
+    "response": "I hear how overwhelmed you are feeling, and you do not have to figure everything out alone right now. Take a slow, deep breath with me. Compassionate support is available 24/7 at Tele-MANAS 14416 and NHAA 14566. How can I best support you right now?"
+  }
+}
